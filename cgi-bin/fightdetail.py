@@ -30,11 +30,11 @@ def populate(connection, one, two):
     data = cursor.fetchall()[0]
 
     comb1 = cursor.execute("SELECT name FROM combatant WHERE id = "+ str(data[0]))
-    comb1 = cursor.fetchall()
-    comb2 = cursor.execute("SELECT name FROM combatant WHERE id = "+ str(data[0]))
-    comb2 = cursor.fetchall()
-    winner =  cursor.execute("SELECT name FROM combatant WHERE id = "+ str(data[0]))
-    winner = cursor.fetchall()
+    comb1 = cursor.fetchall()[0][0]
+    comb2 = cursor.execute("SELECT name FROM combatant WHERE id = "+ str(data[1]))
+    comb2 = cursor.fetchall()[0][0]
+    winner =  cursor.execute("SELECT name FROM combatant WHERE id = "+ str(data[2]))
+    winner = cursor.fetchall()[0][0]
 
     print ("<table border='1'>")
     #Table header
