@@ -4,6 +4,7 @@ import mysql.connector
 import getpass
 
 def getcon(verbose=False):
+    #Connects to the database.
     login_name = getpass.getuser()
     config = {"user": login_name, "database": login_name}
     connection = mysql.connector.connect(**config)
@@ -13,6 +14,7 @@ def getcon(verbose=False):
     return connection
 
 def populate():
+    #Fills in the html portion sourced from the database.
     connection = getcon()
     sql = "select winner_id, c.name, count(*) as wins from fight, combatant c where c.id = winner_id group by winner_id order by wins desc, winner_id;"
     data = connection.cursor()

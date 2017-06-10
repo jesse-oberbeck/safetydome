@@ -5,6 +5,7 @@ import getpass
 import cgi
 
 def getval():
+    #Grabs values passed via url.
     fields = cgi.FieldStorage()
     default = ""
     comb_id = fields.getvalue("id", default)
@@ -16,6 +17,7 @@ def getval():
         print("<h3>", "Nice try, Dave.","</h3>")
 
 def getcon(verbose=False):
+    #Connects to the database.
     login_name = getpass.getuser()
     config = {"user": login_name, "database": login_name}
     connection = mysql.connector.connect(**config)
@@ -25,7 +27,7 @@ def getcon(verbose=False):
     return connection
 
 def populate(connection,comb_id):
-
+    #Fills in the html portion sourced from the database.
     sql = "SELECT * FROM combatant WHERE id = " + str(comb_id)
     cursor = connection.cursor()
     cursor.execute(sql)
