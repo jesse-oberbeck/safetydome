@@ -37,7 +37,6 @@ def populate():
 
 
 print("Content-type: text/html\n")
-# This begins the Body of hte HTTP Response
 print("<html><head><title>Ranking</title></head>")
 print("<body>")
 print("<a href='../index.html'>Home</a>")
