@@ -70,6 +70,7 @@ print("Content-type: text/html\n")
 # This begins the Body of hte HTTP Response
 print("<html><head><title>Combatant Details</title></head>")
 print("<body>")
+print("<a href='../index.html'>Home</a>")
 print("<h1>Battle Details</h1>")
 connection = getcon()
 val1, val2 = getvals()

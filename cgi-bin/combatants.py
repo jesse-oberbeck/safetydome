@@ -34,6 +34,7 @@ print("Content-type: text/html\n")
 # This begins the Body of hte HTTP Response
 print("<html><head><title>Combatant List</title></head>")
 print("<body>")
+print("<a href='../index.html'>Home</a>")
 print("<h1>Combatant List</h1>")
 print("<div style=float:right>")
 print("<img src=\'/select-player.png\' style=\'width:600px;height:450px;\'>")
