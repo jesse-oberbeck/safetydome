@@ -9,7 +9,11 @@ def getval():
     default = ""
     comb_id = fields.getvalue("id", default)
     print ("<h2>",type(comb_id),"</h2>")
-    return comb_id
+    try:
+        comb_id = int(comb_id)
+        return comb_id
+    except:
+        print("<h3>", "Nice try, Dave.","</h3>")
 
 def getcon(verbose=False):
     login_name = getpass.getuser()

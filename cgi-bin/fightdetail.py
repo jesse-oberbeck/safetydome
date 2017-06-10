@@ -10,8 +10,12 @@ def getvals():
     vs = fields.getvalue("vs", default)
     print ("<h2>",vs,"</h2>")
     one, two = vs.split('v')
-
-    return one, two
+    try:
+        one = int(one)
+        two = int(two)
+        return one, two
+    except:
+        print("<h3>", "Nice try, Dave.","</h3>")
 
 def getcon(verbose=False):
     login_name = getpass.getuser()
