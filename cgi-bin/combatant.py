@@ -31,18 +31,22 @@ def populate(connection,comb_id):
     cursor.execute(sql)
     data = cursor.fetchall()[0]
 
+    base_stats = "SELECT base_atk, base_dfn, base_hp from species where id =" + str(data[0])
+    cursor.execute(base_stats)
+    bases = cursor.fetchall()[0]
+
     #Separate items:
     name = data[1]
     spc = data[2]
-    atk = data[3]
-    dfn = data[4]
-    hp = data[5]
+    atk = int(data[3]) + int(bases[0])
+    dfn = int(data[4]) + int(bases[1])
+    hp = int(data[5]) + int(bases[2])
 
-    attacks = "select name from attack where id in (select attack_id from species_attack where species_id =" + str(spc) + ");"
+    attacks = "SELECT name FROM attack WHERE id IN (SELECT attack_id FROM species_attack WHERE species_id =" + str(spc) + ");"
     cursor.execute(attacks)
     atk_list = [x[0] for x in cursor.fetchall()]
 
-    spec = "select name from species where id = " + str(spc) + ";"
+    spec = "SELECT name FROM species WHERE id = " + str(spc) + ";"
     cursor.execute(spec)
     species = cursor.fetchall()[0][0]
 
@@ -58,9 +62,9 @@ def populate(connection,comb_id):
     print ("<td>", name, "</td>", "\n", end = " ")
     print ("<td>", species, "</td>", "\n", end = " ")
     print ("<td>", atk_list, "</td>", "\n", end = " ")
-    print ("<td>", atk, "</td>", "\n", end = " ")
-    print ("<td>", dfn, "</td>", "\n", end = " ")
-    print ("<td>", hp, "</td>", "\n", end = " ")
+    print ("<td>", str(atk), "</td>", "\n", end = " ")
+    print ("<td>", str(dfn), "</td>", "\n", end = " ")
+    print ("<td>", str(hp), "</td>", "\n", end = " ")
     print("</tr>")
     return connection
 
