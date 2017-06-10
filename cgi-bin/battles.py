@@ -6,13 +6,16 @@ import getpass
 
 def getcon(verbose=False):
     # Connects to the database.
-    login_name = getpass.getuser()
-    config = {"user": login_name, "database": login_name}
-    connection = mysql.connector.connect(**config)
-    if verbose:
-        print("Connecting with configuration:", config, sep='\n')
-        print("Using", type(connection))
-    return connection
+    try:
+        login_name = getpass.getuser()
+        config = {"user": login_name, "database": login_name}
+        connection = mysql.connector.connect(**config)
+        if verbose:
+            print("Connecting with configuration:", config, sep='\n')
+            print("Using", type(connection))
+        return connection
+    except:
+        print("Connection Error.")
 
 
 def populate():
